@@ -1,1 +1,40 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class GadgetTest {
+    private Gadget gadget;
+
+    @BeforeEach
+    void setUp() {
+        // Initialize the Gadget object before each test
+        gadget = new Gadget("TestModel", 100.0, 200, "10x10");
+    }
+
+    @Test
+    void testGetModel() {
+        assertEquals("TestModel", gadget.getModel(), "The model should match the initialization value.");
+    }
+
+    @Test
+    void testGetPrice() {
+        assertEquals(100.0, gadget.getPrice(), 0.001, "The price should match the initialization value.");
+    }
+
+    @Test
+    void testGetWeight() {
+        assertEquals(200, gadget.getWeight(), "The weight should match the initialization value.");
+    }
+
+    @Test
+    void testGetSize() {
+        assertEquals("10x10", gadget.getSize(), "The size should match the initialization value.");
+    }
+
+    @Test
+    void testDisplay() {
+        // This method would be a bit more complex to test due to its reliance on system output.
+        // Ideally, you would redirect the system output and verify the display output matches expectations.
+    }
+}
 
