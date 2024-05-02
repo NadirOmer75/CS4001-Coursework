@@ -32,8 +32,6 @@ public class MP3 extends Gadget {
         System.out.println("Remaining memory: " + availableMemory + "MB"); // Display remaining memory
     }
 
-    // Override the display method of Gadget to include details about available memory
-    @Override
     public void display(int displayNumber) {
         System.out.println("Display Number: " + displayNumber); // Display the identifier number of the gadget
         super.display(displayNumber); // Call the display method of the superclass (Gadget)
