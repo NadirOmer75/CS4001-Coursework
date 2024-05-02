@@ -37,7 +37,7 @@ public class GadgetShop implements ActionListener {
 
         // Adding text fields and their corresponding labels to the frame
         modelTextField = addFieldWithLabel(contentPane, "Model:");
-        priceTextField = addFieldWithLabel(contentPane, "Price:");
+        priceTextField = addFieldWithLabel(contentPane, "Price (£):");
         weightTextField = addFieldWithLabel(contentPane, "Weight:");
         sizeTextField = addFieldWithLabel(contentPane, "Size:");
         creditTextField = addFieldWithLabel(contentPane, "Credit:");
@@ -63,33 +63,28 @@ public class GadgetShop implements ActionListener {
      * Handles action events triggered by GUI components.
      * Delegates actions based on the command associated with the event source.
      */
-    public void actionPerformed(ActionEvent event) {
-        try {
-            String command = event.getActionCommand();
-            switch (command) {
-                case "Add Mobile":
-                    addMobile();
-                    break;
-                case "Add MP3":
-                    addMP3();
-                    break;
-                case "Clear":
-                    clear();
-                    break;
-                case "Display All":
-                    displayAll();
-                    break;
-                case "Make a Call":
-                    makeCall();
-                    break;
-                case "Download Music":
-                    downloadMusic();
-                    break;
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame, "Error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+    public void actionPerformed(ActionEvent event)
+ {
+ String command = event.getActionCommand();
+ if (command.equals("Add Mobile")) {
+addMobile();
+ }
+ if (command.equals("Add Mp3")) {
+addMP3();
+ }
+ if (command.equals("Clear")) {
+clear();
+ }
+ if (command.equals("Display All")) {
+displayAll();
+ }
+ if (command.equals("Make a Call")) {
+makeCall();
+ }
+ if (command.equals("Download Music")) {
+downloadMusic();
+ }
+ }
 
     // Private helper methods for GUI initialization and action handling
 
