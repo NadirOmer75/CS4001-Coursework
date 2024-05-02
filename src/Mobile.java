@@ -35,8 +35,6 @@ public class Mobile extends Gadget {
         }
     }
 
-    // Overrides the display method from the Gadget superclass to include calling credit details in the gadget's display output.
-    @Override
     public void display(int displayNumber) {
         System.out.println("Display Number: " + displayNumber); // Outputs the display number assigned to this gadget.
         super.display(displayNumber); // Calls the display method of the superclass to print basic gadget details.
