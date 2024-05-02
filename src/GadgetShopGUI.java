@@ -4,8 +4,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
- * GadgetShop manages a list of gadgets and provides a GUI for interacting with those gadgets.
- * It allows adding, displaying, and interacting with different types of gadgets like mobiles and MP3 players.
+The GadgetShop (GUI) provides a displayed image of the array list and code written down in this document. It extends the addition, presentation, and interaction with many devices, such as cellphones and MP3 players to appear within the array list.
+ * 
  */
 public class GadgetShop implements ActionListener {
 
@@ -19,7 +19,7 @@ public class GadgetShop implements ActionListener {
     private ArrayList<Gadget> gadgets = new ArrayList<>();
 
     /**
-     * Constructor for GadgetShop.
+     * This is the Constructor for GadgetShop.
      * Initializes the GUI by calling makeFrame method.
      */
     public GadgetShop() {
@@ -133,15 +133,16 @@ public class GadgetShop implements ActionListener {
     }
 
     // Helper methods to retrieve data from text fields
-
-    private String getModel() { return modelTextField.getText(); }
-    private double getPrice() { return Double.parseDouble(priceTextField.getText()); }
-    private int getWeight() { return Integer.parseInt(weightTextField.getText()); }
+    private int getDisplayNumber() { return Integer.parseInt(displayNumberTextField.getText()) - 1; }
     private String getSize() { return sizeTextField.getText(); }
-    private int getCredit() { return Integer.parseInt(creditTextField.getText()); }
-    private int getMemory() { return Integer.parseInt(memoryTextField.getText()); }
+    private double getPrice() { return Double.parseDouble(priceTextField.getText()); }
     private String getPhoneNumber() { return phoneNumberTextField.getText(); }
     private int getDuration() { return Integer.parseInt(durationTextField.getText()); }
     private int getDownload() { return Integer.parseInt(downloadTextField.getText()); }
-    private int getDisplayNumber() { return Integer.parseInt(displayNumberTextField.getText()) - 1; }
+    
+    private int getWeight() { return Integer.parseInt(weightTextField.getText()); }
+    private int getCredit() { return Integer.parseInt(creditTextField.getText()); }
+    private String getModel() { return modelTextField.getText(); }
+    private int getMemory() { return Integer.parseInt(memoryTextField.getText()); }
+    
 }
