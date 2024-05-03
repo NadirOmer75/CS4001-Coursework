@@ -1,32 +1,50 @@
-public class Mobile extends Gadget {
-    private int credit;
+/** 
 
-    public Mobile(String model, double price, int weight, String size, int credit) {
+* Gadget Shop application for adding MP3 Players, Mobile/Smart Phones, making calls and downloading music. 
+
+* 
+
+* @author (Nadir Omer Ahmed Ismail) 
+
+* @version (03/05/2024) 
+
+*/ 
+
+
+public class Mobile extends Gadget {
+    private int callingCredit;
+
+    public Mobile(String model, double price, int weight, String size, int callingCredit) {
         super(model, price, weight, size);
-        this.credit = credit;
+        this.callingCredit = callingCredit;
     }
 
-    public void addCredit(int additionalCredit) {
-        if (additionalCredit > 0) {
-            credit += additionalCredit;
-            System.out.println("Credit added. Total credit: " + credit + " minutes.");
+    public int getCallingCredit() {
+        return callingCredit;
+    }
+
+    public void addCredit(int credit) {
+        if (credit > 0) {
+            callingCredit += credit;
+            System.out.println("Added " + credit + " minutes of credit.");
         } else {
-            System.out.println("Error: Credit not added. Please add a positive amount.");
+            System.out.println("Please enter a positive amount of credit.");
         }
     }
 
     public void makeCall(String phoneNumber, int duration) {
-        if (credit >= duration) {
-            credit -= duration;
-            System.out.println("Call made to " + phoneNumber + " for " + duration + " minutes. Remaining credit: " + credit + " minutes.");
+        if (duration <= callingCredit) {
+            callingCredit -= duration;
+            System.out.println("Call made to: " + phoneNumber + " for " + duration + " minutes.");
         } else {
-            System.out.println("Insufficient credit.");
+            System.out.println("Insufficient credit to make the call.");
         }
     }
 
     @Override
-    public void display(int displayNumber) {
-        super.display(displayNumber); // Calls the display method from Gadget class, passing the display number
-        System.out.println("Credit: " + credit + " minutes."); // Then adds specific details for Mobile
+    public void display() {
+        super.display();
+        System.out.println("Calling Credit: " + callingCredit + " minutes");
     }
 }
+
