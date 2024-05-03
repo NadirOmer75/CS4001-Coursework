@@ -4,20 +4,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+// Main class for the Gadget Shop GUI
 public class GadgetShopGUI extends JFrame implements ActionListener {
+    // List to store all gadgets added to the shop
     private ArrayList<Gadget> gadgets = new ArrayList<>();
+    // Text fields for user input on various gadget attributes
     private JTextField modelTextField, priceTextField, weightTextField, sizeTextField, creditTextField, memoryTextField, phoneNumberTextField, durationTextField, downloadSizeTextField, displayNumberTextField;
+    // Buttons for different functionalities
     private JButton addMobileButton, addMP3Button, clearButton, displayAllButton, makeCallButton, downloadMusicButton;
 
+    // Constructor that initializes the GUI
     public GadgetShopGUI() {
         createGUI();
+        // Show welcome message upon application start
         JOptionPane.showMessageDialog(this, "Welcome to Gadget Shop", "Welcome", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // Method to set up the GUI layout and components
     private void createGUI() {
-        setTitle("Gadget Shop");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridBagLayout());
+        setTitle("Gadget Shop"); // Set window title
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation
+        setLayout(new GridBagLayout()); // Use GridBagLayout for flexible layout
         GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.gridwidth = 1;
@@ -26,12 +33,13 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(2, 2, 2, 2);
 
-        // Adding labels and text fields
+        // Array of labels for user inputs
         String[] labels = {"Model:", "Price:", "Weight:", "Size:", "Credit:", "Memory:", "Phone Number:", "Duration:", "Download Size:", "Display Number:"};
         JTextField[] fields = {modelTextField = new JTextField(20), priceTextField = new JTextField(20), weightTextField = new JTextField(20),
                                sizeTextField = new JTextField(20), creditTextField = new JTextField(20), memoryTextField = new JTextField(20),
                                phoneNumberTextField = new JTextField(20), durationTextField = new JTextField(20), downloadSizeTextField = new JTextField(20),
                                displayNumberTextField = new JTextField(20)};
+        // Loop to add labels and text fields dynamically
         for (int i = 0; i < labels.length; i++) {
             gbc.gridx = 0;
             add(new JLabel(labels[i]), gbc);
@@ -40,10 +48,11 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
             gbc.gridy++;
         }
 
-        // Buttons
+        // Button labels
         String[] buttonLabels = {"Add Mobile", "Add MP3", "Clear", "Display All", "Make a Call", "Download Music"};
         JButton[] buttons = {addMobileButton = new JButton(buttonLabels[0]), addMP3Button = new JButton(buttonLabels[1]), clearButton = new JButton(buttonLabels[2]),
                              displayAllButton = new JButton(buttonLabels[3]), makeCallButton = new JButton(buttonLabels[4]), downloadMusicButton = new JButton(buttonLabels[5])};
+        // Loop to add buttons dynamically
         for (JButton button : buttons) {
             button.addActionListener(this);
             gbc.gridwidth = 2;
@@ -52,14 +61,16 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
             gbc.gridy++;
         }
 
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+        pack(); // Pack the frame to adjust to contents
+        setLocationRelativeTo(null); // Center the window
+        setVisible(true); // Make the frame visible
     }
 
+    // Method called when an action is performed
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            // Determine which button was pressed and act accordingly
             if (e.getSource() == addMobileButton) {
                 Mobile mobile = new Mobile(
                     modelTextField.getText(),
@@ -97,6 +108,7 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
         }
     }
 
+    // Method to clear all text fields
     private void clearFields() {
         modelTextField.setText("");
         priceTextField.setText("");
@@ -110,14 +122,16 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
         displayNumberTextField.setText("");
     }
 
+    // Method to display all gadgets
     private void displayAllGadgets() {
         StringBuilder allGadgets = new StringBuilder("All Gadgets:\n");
         for (int i = 0; i < gadgets.size(); i++) {
-            allGadgets.append(i + 1).append(". ").append(gadgets.get(i).toString()).append("\n");  // Assuming toString() is overridden in Gadget classes
+            allGadgets.append(i + 1).append(". ").append(gadgets.get(i).toString()).append("\n");
         }
         JOptionPane.showMessageDialog(this, allGadgets.toString(), "Gadgets List", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // Method to handle making a call
     private void makeCall() {
         int displayNumber = getDisplayNumber();
         if (displayNumber != -1 && gadgets.get(displayNumber) instanceof Mobile) {
@@ -129,6 +143,7 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
         }
     }
 
+    // Method to handle downloading music
     private void downloadMusic() {
         int displayNumber = getDisplayNumber();
         if (displayNumber != -1 && gadgets.get(displayNumber) instanceof MP3) {
@@ -140,6 +155,7 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
         }
     }
 
+    // Method to retrieve the display number and validate it
     private int getDisplayNumber() {
         try {
             int index = Integer.parseInt(displayNumberTextField.getText()) - 1;
@@ -155,6 +171,7 @@ public class GadgetShopGUI extends JFrame implements ActionListener {
         }
     }
 
+    // Main method to run the application
     public static void main(String[] args) {
         new GadgetShopGUI();
     }
